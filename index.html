@@ -1,0 +1,616 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><title>Menu – Compito di Geografia</title><style>
+  
+/* RESET */
+  
+* {
+  
+  box-sizing: border-box;
+  
+  margin: 0;
+  
+  padding: 0;
+  
+  font-family: "Georgia", serif;
+  
+}
+  
+
+  
+body {
+  
+  height: 100vh;
+  
+  background: radial-gradient(circle at top, #2a1d16, #120a06);
+  
+  display: flex;
+  
+  justify-content: center;
+  
+  align-items: center;
+  
+  overflow: hidden;
+  
+  color: #f3efe9;
+  
+}
+  
+
+  
+/* FADE IN */
+  
+.app {
+  
+  opacity: 0;
+  
+  animation: fadeIn 1.2s ease forwards;
+  
+}
+  
+
+  
+@keyframes fadeIn {
+  
+  to { opacity: 1; }
+  
+}
+  
+
+  
+/* LIBRETTO CHIUSO */
+  
+.book-closed {
+  
+  width: 340px;
+  
+  height: 480px;
+  
+  background: linear-gradient(145deg, #5a3a26, #3e2617);
+  
+  border-radius: 6px;
+  
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  
+  display: flex;
+  
+  flex-direction: column;
+  
+  justify-content: center;
+  
+  align-items: center;
+  
+  gap: 20px;
+  
+}
+  
+
+  
+.title {
+  
+  font-size: 48px;
+  
+  color: #d4af73;
+  
+  letter-spacing: 2px;
+  
+}
+  
+
+  
+.subtitle {
+  
+  font-size: 14px;
+  
+  color: #e6d7b8;
+  
+}
+  
+
+  
+.menu-buttons {
+  
+  margin-top: 30px;
+  
+  display: flex;
+  
+  gap: 14px;
+  
+}
+  
+
+  
+.menu-buttons button {
+  
+  background: #ffffff;
+  
+  border: none;
+  
+  padding: 10px 18px;
+  
+  border-radius: 20px;
+  
+  cursor: pointer;
+  
+  font-size: 13px;
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+  
+
+  
+.menu-buttons button:hover {
+  
+  transform: scale(1.05);
+  
+  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+  
+}
+  
+
+  
+/* MENU APERTO */
+  
+.book-open {
+  
+  width: 820px;
+  
+  height: 520px;
+  
+  background: #f6f1e9;
+  
+  color: #2a1d16;
+  
+  display: none;
+  
+  border-radius: 6px;
+  
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  
+  overflow: hidden;
+  
+}
+  
+
+  
+.pages {
+  
+  display: flex;
+  
+  width: 100%;
+  
+  height: 100%;
+  
+}
+  
+
+  
+.page {
+  
+  width: 50%;
+  
+  padding: 24px;
+  
+  border-right: 1px solid #ddd;
+  
+}
+  
+
+  
+.page:last-child {
+  
+  border-right: none;
+  
+}
+  
+
+  
+/* PIATTI */
+  
+.dish {
+  
+  display: flex;
+  
+  gap: 14px;
+  
+  margin-bottom: 24px;
+  
+  cursor: pointer;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+  
+
+  
+.dish:hover {
+  
+  transform: scale(1.03);
+  
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  
+}
+  
+
+  
+.dish img {
+  
+  width: 90px;
+  
+  height: 90px;
+  
+  object-fit: cover;
+  
+  border-radius: 6px;
+  
+}
+  
+
+  
+.dish-info h3 {
+  
+  font-size: 16px;
+  
+  margin-bottom: 6px;
+  
+}
+  
+
+  
+.dish-info p {
+  
+  font-size: 12px;
+  
+  opacity: 0.8;
+  
+}
+  
+
+  
+/* DETTAGLI PIATTO */
+  
+.details {
+  
+  position: absolute;
+  
+  inset: 0;
+  
+  background: #f6f1e9;
+  
+  display: none;
+  
+  padding: 30px;
+  
+  color: #2a1d16
+  
+}
+  
+
+  
+.details.active {
+  
+  display: flex;
+  
+  gap: 30px;
+  
+}
+  
+
+  
+.details img {
+  
+  width: 40%;
+  
+  border-radius: 8px;
+  
+}
+  
+
+  
+.details-text {
+  
+  width: 60%;
+  
+  overflow-y: auto;
+  
+}
+  
+
+  
+.details-text h2 {
+  
+  margin-bottom: 10px;
+  
+}
+  
+
+  
+.details-text section {
+  
+  margin-bottom: 14px;
+  
+}
+  
+
+  
+.details-text h4 {
+  
+  font-size: 13px;
+  
+  margin-bottom: 4px;
+  
+}
+  
+
+  
+.details-text p {
+  
+  font-size: 13px;
+  
+  line-height: 1.4;
+  
+}
+  
+
+  
+/* NAV */
+  
+.nav {
+  
+  position: absolute;
+  
+  bottom: 14px;
+  
+  right: 20px;
+  
+  display: flex;
+  
+  gap: 10px;
+  
+}
+  
+
+  
+.nav button {
+  
+  padding: 6px 12px;
+  
+  border: none;
+  
+  background: #2a1d16;
+  
+  color: #f6f1e9;
+  
+  border-radius: 14px;
+  
+  cursor: pointer;
+  
+}
+  
+</style></head><body><div class="app">  <div class="book-closed" id="closed"><div class="title">MENU</div>
+
+<div class="subtitle">Per il compito di Geografia</div>
+
+
+
+<div class="menu-buttons">
+
+  <button onclick="openMenu()">Apri il Menu</button>
+
+<button onclick="openSources()">Fonti (link)</button>
+
+</div>
+
+  </div>  <div class="book-open" id="open"><div class="pages" id="pages"></div>
+
+<div class="nav">
+
+  <button onclick="prevPage()">◀</button>
+
+  <button onclick="nextPage()">▶</button>
+
+  <button onclick="closeMenu()">Chiudi</button>
+
+</div>
+
+<div class="details" id="sources">
+  <div class="details-text">
+    <h2>Fonti</h2>
+
+    <section>
+      <h4>Libro di Geografia</h4>
+      <p>Libro scolastico adottato in classe.</p>
+    </section>
+
+    <section>
+      <h4>Wikipedia</h4>
+      <p>Consultata per approfondimenti generali.</p>
+    </section>
+
+    <button onclick="closeSources()">Chiudi</button>
+  </div>
+</div>
+
+    </div>  <div class="details" id="details"></div></div><script>
+  
+const dishes = [
+  
+  { name:"Carbonara", text:"Piatto romano nato come cucina povera. Uova, pecorino, guanciale. Energia alta, proteico." },
+  
+  { name:"Pizza Margherita", text:"Simbolo d'Italia. Pomodoro, mozzarella, basilico. Equilibrata e universale." },
+  
+  { name:"Lasagne", text:"Emilia-Romagna. Piatto conviviale da festa. Ricco e completo." },
+  
+  { name:"Risotto allo zafferano", text:"Nord Italia. Raffinato, legato al commercio delle spezie." },
+  
+  { name:"Arancini", text:"Sicilia. Street food storico, nutriente e sostanzioso." },
+  
+  { name:"Pesto Genovese", text:"Liguria. Basilico, olio, pinoli. Fresco e aromatico." },
+  
+  { name:"Parmigiana", text:"Sud Italia. Melanzane, pomodoro. Tradizione contadina." },
+  
+  { name:"Polenta", text:"Nord. Cereale base delle zone montane." },
+  
+  { name:"Ossobuco", text:"Lombardia. Carne lenta, piatto invernale." },
+  
+  { name:"Tiramisù", text:"Dolce moderno. Energia immediata." },
+  
+  { name:"Cannoli", text:"Sicilia. Influenze arabe." },
+  
+  { name:"Focaccia", text:"Liguria. Pane quotidiano." }
+  
+];
+  
+
+  
+let page = 0;
+  
+
+  
+function openMenu() {
+  
+  document.getElementById("closed").style.display = "none";
+  
+  document.getElementById("open").style.display = "block";
+  
+  render();
+  
+}
+  
+
+  
+function closeMenu() {
+  
+  document.getElementById("open").style.display = "none";
+  
+  document.getElementById("closed").style.display = "flex";
+  
+}
+  
+
+  
+function render() {
+  
+  const container = document.getElementById("pages");
+  
+  container.innerHTML = "";
+  
+
+  
+  for(let p=0;p<2;p++) {
+  
+    const pg = document.createElement("div");
+  
+    pg.className = "page";
+  
+
+  
+    for(let i=0;i<2;i++) {
+  
+      const idx = page*4 + p*2 + i;
+  
+      if(!dishes[idx]) continue;
+  
+
+  
+      const d = document.createElement("div");
+  
+      d.className = "dish";
+  
+      d.innerHTML = `
+  
+        <img src="https://via.placeholder.com/150">
+  
+        <div class="dish-info">
+  
+          <h3>${dishes[idx].name}</h3>
+  
+          <p>${dishes[idx].text}</p>
+  
+        </div>
+  
+      `;
+  
+      d.onclick = () => openDetails(dishes[idx]);
+  
+      pg.appendChild(d);
+  
+    }
+  
+    container.appendChild(pg);
+  
+  }
+  
+}
+  
+
+  
+function nextPage() {
+  
+  if(page < 2) {
+  
+    page++;
+  
+    render();
+  
+  }
+  
+}
+  
+
+  
+function prevPage() {
+  
+  if(page > 0) {
+  
+    page--;
+  
+    render();
+  
+  }
+  
+}
+  
+
+  
+function openDetails(d) {
+  
+  const det = document.getElementById("details");
+  
+  det.innerHTML = `
+  
+    <img src="https://via.placeholder.com/400">
+  
+    <div class="details-text">
+  
+      <h2>${d.name}</h2>
+  
+      <section><h4>Storia</h4><p>${d.text}</p></section>
+  
+      <section><h4>Salute</h4><p>Consumo equilibrato all'interno della dieta mediterranea.</p></section>
+  
+      <button onclick="closeDetails()">Chiudi</button>
+  
+    </div>
+  
+  `;
+  
+  det.classList.add("active");
+  
+}
+  
+
+  
+function closeDetails() {
+  
+  document.getElementById("details").classList.remove("active");
+  
+}
+function openSources() {
+  document.getElementById("sources").classList.add("active");
+}
+
+function closeSources() {
+  document.getElementById("sources").classList.remove("active");
+}
+  
+</script></body></html>
